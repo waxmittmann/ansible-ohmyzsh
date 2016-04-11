@@ -1,12 +1,12 @@
 ---
 - name: Installing Zsh and git
-  apt: pkg=zsh,git state=latest
+  apt: pkg=zsh,git state=latest force=yes #grr, why force???
   register: installation
 
-- name: Backing up existing ~/.zshrc
-  shell: if [ -f ~/.zshrc ]; then mv ~/.zshrc{,.orig}; fi
-  when: installation|success
-  sudo: no
+# - name: Backing up existing ~/.zshrc
+#   shell: if [ -f ~/.zshrc ]; then mv ~/.zshrc{,.orig}; fi
+#   when: installation|success
+#   sudo: no
 
 - name: Cloning  oh-my-zsh
   git:
