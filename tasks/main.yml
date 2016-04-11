@@ -8,7 +8,7 @@
 #   when: installation|success
 #   sudo: no
 
-- name: Cloning  oh-my-zsh
+- name: Cloning oh-my-zsh
   git:
     repo=https://github.com/robbyrussell/oh-my-zsh
     dest=~/.oh-my-zsh
@@ -22,3 +22,15 @@
     dest=~/.zshrc
   when: cloning|success
   sudo: no
+
+# Todo: Put repo path + destination path into vars
+- name: Cloning zsh profile
+  git: repo=https://github.com/waxmittmann/my-zsh-profile.git dest=/AnsibleInstall/zsh_profile
+
+- name: Copying zsh profile into user root
+  shell: cp /AnsibleInstall/zsh_profile/my_zshrc_profile.zshrc /home/vagrant/.zshrc
+
+# Example git checkout from Ansible Playbooks
+#- git: repo=git://foosball.example.org/path/to/repo.git
+#       dest=/srv/checkout
+#       version=release-0.22
